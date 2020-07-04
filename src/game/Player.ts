@@ -38,27 +38,10 @@ export default class Player {
     return true;
   }
 
-  // public adjustMegaCredits(amount: number): boolean {
-  //   // check if legal move
-  //   if (this.megaCredits + amount < 0) {
-  //     return false;
-  //   }
-  //   this.megaCredits += amount;
-  //   return true;
-  // }
-
   public adjustMegaCreditProduction(amount: number): void {
     // MCProduction can go negative
     this.megacreditProduction += amount;
   }
-
-  // public adjustSteel(amount: number): boolean {
-  //   if (this.steel + amount < 0) {
-  //     return false;
-  //   }
-  //   this.steel += amount;
-  //   return true;
-  // }
 
   public adjustSteelProduction(amount: number): boolean {
     if (this.steelProduction + amount < 0) {
@@ -68,15 +51,6 @@ export default class Player {
     return true;
   }
 
-  // public adjustTitanium(amount: number): boolean {
-  //   // check if legal move
-  //   if (this.titanium + amount < 0) {
-  //     return false;
-  //   }
-  //   this.titanium += amount;
-  //   return true;
-  // }
-
   public adjustTitaniumProduction(amount: number): boolean {
     if (this.titaniumProduction + amount < 0) {
       return false;
@@ -84,15 +58,6 @@ export default class Player {
     this.titaniumProduction += amount;
     return true;
   }
-
-  // public adjustPlants(amount: number): boolean {
-  //   // check if legal move
-  //   if (this.plants + amount < 0) {
-  //     return false;
-  //   }
-  //   this.plants += amount;
-  //   return true;
-  // }
 
   public adjustPlantsProduction(amount: number): boolean {
     if (this.plantProduction + amount < 0) {
@@ -102,15 +67,6 @@ export default class Player {
     return true;
   }
 
-  // public adjustEnergy(amount: number): boolean {
-  //   // check if legal move
-  //   if (this.energy + amount < 0) {
-  //     return false;
-  //   }
-  //   this.energy += amount;
-  //   return true;
-  // }
-
   public adjustEnergyProduction(amount: number): boolean {
     if (this.energyProduction + amount < 0) {
       return false;
@@ -118,15 +74,6 @@ export default class Player {
     this.energyProduction += amount;
     return true;
   }
-
-  // public adjustHeat(amount: number): boolean {
-  //   // check if legal move
-  //   if (this.heat + amount < 0) {
-  //     return false;
-  //   }
-  //   this.heat += amount;
-  //   return true;
-  // }
 
   public adjustHeatProduction(amount: number): boolean {
     if (this.heatProduction + amount < 0) {
