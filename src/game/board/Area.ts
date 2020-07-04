@@ -2,12 +2,12 @@ import Tile from './tiles/Tile';
 import { BasicResource } from '../Resource';
 
 export default interface Area {
-  type: SpaceType;
+  type: AreaType;
   tile?: Tile | undefined;
   bonus?: AreaBonus;
 }
 
-export enum SpaceType {
+export enum AreaType {
   NORMAL,
   OCEAN,
   CITY,
@@ -26,7 +26,7 @@ interface AreaBonus {
 }
 
 export class RegularArea implements Area {
-  public type = SpaceType.NORMAL;
+  public type = AreaType.NORMAL;
   public tile = undefined;
   public bonus: AreaBonus | undefined;
   constructor(bonus: AreaBonus) {
@@ -35,7 +35,7 @@ export class RegularArea implements Area {
 }
 
 export class OceanArea implements Area {
-  public type = SpaceType.OCEAN;
+  public type = AreaType.OCEAN;
   public tile = undefined;
   public bonus: AreaBonus | undefined;
   constructor(bonus: AreaBonus) {
@@ -44,7 +44,7 @@ export class OceanArea implements Area {
 }
 
 export class CityArea implements Area {
-  public type = SpaceType.CITY;
+  public type = AreaType.CITY;
   public tile = undefined;
   public bonus: AreaBonus | undefined;
   constructor(bonus: AreaBonus) {
@@ -53,7 +53,7 @@ export class CityArea implements Area {
 }
 
 export class LavaArea implements Area {
-  public type = SpaceType.LAVA;
+  public type = AreaType.LAVA;
   public tile = undefined;
   public bonus: AreaBonus | undefined;
   constructor(name: string, bonus: AreaBonus) {
