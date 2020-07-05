@@ -1,62 +1,36 @@
-import Tile from './tiles/Tile';
+import { Tile } from './Tiles';
 import { BasicResource } from '../Resource';
 
-export default interface Area {
-  type: AreaType;
-  tile?: Tile | undefined;
-  bonus?: AreaBonus;
+export default class Area {
+  public type: AreaType;
+  public tile?: Tile | undefined;
+  public bonus?: AreaBonus;
+  public x: number;
+  public y: number;
+
+  constructor(x: number, y: number, type: AreaType, bonus: AreaBonus) {
+    this.bonus = bonus;
+    this.type = type;
+    this.x = x;
+    this.y = y;
+  }
 }
 
 export enum AreaType {
   NORMAL,
   OCEAN,
   CITY,
-  SPACE,
   LAVA,
+  PHOBOS,
+  GANYMEDE,
 }
 
 // https://stackoverflow.com/questions/39701524/using-enum-as-interface-key-in-typescript
-interface AreaBonus {
+export interface AreaBonus {
   [BasicResource.MEGACREDITS]?: number;
   [BasicResource.STEEL]?: number;
   [BasicResource.TITANIUM]?: number;
   [BasicResource.PLANTS]?: number;
   [BasicResource.HEAT]?: number;
   cards?: number;
-}
-
-export class RegularArea implements Area {
-  public type = AreaType.NORMAL;
-  public tile = undefined;
-  public bonus: AreaBonus | undefined;
-  constructor(bonus: AreaBonus) {
-    this.bonus = bonus;
-  }
-}
-
-export class OceanArea implements Area {
-  public type = AreaType.OCEAN;
-  public tile = undefined;
-  public bonus: AreaBonus | undefined;
-  constructor(bonus: AreaBonus) {
-    this.bonus = bonus;
-  }
-}
-
-export class CityArea implements Area {
-  public type = AreaType.CITY;
-  public tile = undefined;
-  public bonus: AreaBonus | undefined;
-  constructor(bonus: AreaBonus) {
-    this.bonus = bonus;
-  }
-}
-
-export class LavaArea implements Area {
-  public type = AreaType.LAVA;
-  public tile = undefined;
-  public bonus: AreaBonus | undefined;
-  constructor(name: string, bonus: AreaBonus) {
-    this.bonus = bonus;
-  }
 }
