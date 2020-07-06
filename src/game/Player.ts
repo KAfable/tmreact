@@ -30,12 +30,16 @@ export default class Player {
   }
 
   public pay(resource: BasicResource, amount: number): boolean {
-    if (this.getResource(resource) - amount < 0) {
+    if (this.getResource(resource) < amount) {
       return false;
     }
 
     this[resource] -= amount;
     return true;
+  }
+
+  public receive(resource: BasicResource, amount: number): void {
+    this[resource] += amount;
   }
 
   public adjustMegaCreditProduction(amount: number): void {
