@@ -3,16 +3,20 @@ import { BasicResource } from '../Resource';
 
 export default class Area {
   public type: AreaType;
-  public tile?: Tile | undefined;
-  public bonus?: AreaBonus;
   public x: number;
   public y: number;
+  public tile?: Tile;
+  public bonus?: AreaBonus;
+  // Phobos / Ganymede / Noctis City / Ascraeus Mons / ...
+  public name?: string;
+  public highlighted: boolean;
 
   constructor(x: number, y: number, type: AreaType, bonus: AreaBonus) {
     this.bonus = bonus;
     this.type = type;
     this.x = x;
     this.y = y;
+    this.highlighted = false;
   }
 }
 
@@ -33,4 +37,13 @@ export interface AreaBonus {
   [BasicResource.PLANTS]?: number;
   [BasicResource.HEAT]?: number;
   cards?: number;
+}
+
+export enum AreaName {
+  ganymede = 'Ganymede Colony',
+  phobos = 'Phobos Space Haven',
+  ascraeus = 'Ascraeus Mons',
+  pavonis = 'Pavonis Mons',
+  tharsis = 'Tharsis Tholis',
+  noctis = 'Noctis City',
 }
