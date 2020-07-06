@@ -7,9 +7,6 @@ export default class TitaniumMine implements Card {
   public name = 'Titanium Mine';
   public cost = 7;
 
-  // play the titanium mine
-  // and then what?
-
   public play(game: Game, player: Player) {
     if (player.pay(BasicResource.MEGACREDITS, this.cost)) {
       player.adjustTitaniumProduction(1);
