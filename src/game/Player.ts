@@ -19,8 +19,10 @@ export default class Player {
   private heat: number = 0;
   private heatProduction: number = 0;
   private hand: Array<Card> = [];
+  public corporation: Card | undefined = undefined;
 
-  constructor(name: string) {
+  constructor(name: string, corp: Card) {
+    this.corporation = corp;
     this.name = name;
   }
 
