@@ -3,6 +3,7 @@ import { BasicResource } from '../Resource';
 
 export default class Area {
   public type: AreaType;
+  public id: string;
   public x: number;
   public y: number;
   public tile?: Tile;
@@ -11,12 +12,20 @@ export default class Area {
   public name?: string;
   public highlighted: boolean;
 
-  constructor(x: number, y: number, type: AreaType, bonus: AreaBonus) {
+  constructor(
+    x: number,
+    y: number,
+    type: AreaType = AreaType.NORMAL,
+    bonus?: AreaBonus,
+    name?: string
+  ) {
     this.bonus = bonus;
     this.type = type;
     this.x = x;
     this.y = y;
     this.highlighted = false;
+    this.name = name;
+    this.id = this.name || `${type}${x}${y}`;
   }
 }
 
@@ -35,6 +44,7 @@ export interface AreaBonus {
   [BasicResource.STEEL]?: number;
   [BasicResource.TITANIUM]?: number;
   [BasicResource.PLANTS]?: number;
+  [BasicResource.ENERGY]?: number;
   [BasicResource.HEAT]?: number;
   cards?: number;
 }
@@ -46,4 +56,5 @@ export enum AreaName {
   pavonis = 'Pavonis Mons',
   tharsis = 'Tharsis Tholis',
   noctis = 'Noctis City',
+  arsia = 'Arsia Mons',
 }
