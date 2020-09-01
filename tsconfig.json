@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist",
+    "rootDir": "./src",
     "module": "esnext",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -9,7 +10,6 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": "./src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -40,12 +40,14 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "exclude": [
+    "dist",
     "node_modules",
     "build",
     "scripts",
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts"
+    "src/setupTests.ts",
+    "tests"
   ]
 }
