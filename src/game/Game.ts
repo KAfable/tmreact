@@ -1,6 +1,6 @@
 import Player from './Player';
 import Board from './board';
-import Card from './Card';
+import Card from './card';
 
 const MAX_OXYGEN = 14;
 const MAX_TEMPERATURE = 8;
