@@ -11,7 +11,7 @@ export default class Board {
   }
 
   public getNeighbors(target: Area): Array<Area> {
-    return [];
+    return this.grid;
   }
 
   public doPlacementBonus(target: Area, tile: Tile, player: Player) {

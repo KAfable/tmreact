@@ -1,7 +1,7 @@
-import Area, { AreaType } from './Area';
-import Player from '../Player';
-import { AreaBonus } from './Area';
-import { BasicResource } from '../Resource';
+import Area /*, { AreaType }*/ from './Area';
+// import Player from '../Player';
+// import { AreaBonus } from './Area';
+// import { BasicResource } from '../Resource';
 
 // TODO
 // check if there's any oceans

@@ -1,10 +1,10 @@
 import Area, { AreaType, AreaName } from './Area';
-import { BasicResource } from '../Resource';
-import { Ocean } from './Tiles';
+// import { BasicResource } from '../Resource';
+// import { Ocean } from './Tiles';
 
 //** Highly recommended these are symmetrical and odd due to hexagonal nature of tiles. */
-const HEIGHT = 9;
-const { NORMAL, OCEAN, CITY, LAVA, PHOBOS, GANYMEDE } = AreaType;
+// const HEIGHT = 9;
+const { NORMAL, OCEAN, CITY, LAVA /*, PHOBOS, GANYMEDE */ } = AreaType;
 const { tharsis, ascraeus, pavonis, arsia, noctis } = AreaName;
 
 export enum BoardVariants {

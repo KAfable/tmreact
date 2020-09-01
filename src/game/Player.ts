@@ -18,7 +18,7 @@ export default class Player {
   private energyProduction: number = 0;
   private heat: number = 0;
   private heatProduction: number = 0;
-  private hand: Array<Card> = [];
+  // private hand: Array<Card> = [];
   public corporation: Card | undefined = undefined;
 
   constructor(name: string, corp: Card) {
@@ -29,6 +29,10 @@ export default class Player {
   public getResource(resource: BasicResource): number {
     if (typeof this[resource] === 'number') return this[resource];
     throw new Error(`Resource ${resource} is not a valid resource.`);
+  }
+
+  public getProduction(): number {
+    return this.megacreditProduction;
   }
 
   public pay(resource: BasicResource, amount: number): boolean {

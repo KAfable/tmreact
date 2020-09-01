@@ -1,10 +1,10 @@
 import Player from './Player';
-import Board from './board';
+// import Board from './board';
 import Card from './card';
 
 const MAX_OXYGEN = 14;
 const MAX_TEMPERATURE = 8;
-const MAX_OCEANS = 9;
+// const MAX_OCEANS = 9;
 const STARTING_TEMP = -30;
 const STARTING_OXYGEN = 0;
 
