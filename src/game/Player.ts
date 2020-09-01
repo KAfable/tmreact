@@ -1,5 +1,5 @@
 import { BasicResource } from './Resource';
-import Card from './Card';
+import Card from './card';
 
 export default class Player {
   public name: string = '';
