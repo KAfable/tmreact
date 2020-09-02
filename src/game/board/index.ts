@@ -5,9 +5,24 @@ import { Tile } from './Tiles';
 
 export default class Board {
   private grid: Array<Area> = [];
+  private oxygen: Number = 0;
+  private temperature: Number = -30;
+  private oceanCount: Number = 0;
 
   constructor(grid: Array<Area>) {
     this.grid = grid;
+  }
+
+  public getTemperature(): Number {
+    return this.temperature;
+  }
+
+  public getOxygen(): Number {
+    return this.oxygen;
+  }
+
+  public getOceanCount(): Number {
+    return this.oceanCount;
   }
 
   public getNeighbors(target: Area): Array<Area> {
