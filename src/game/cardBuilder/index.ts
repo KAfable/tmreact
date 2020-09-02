@@ -1,13 +1,7 @@
 import Card from '../card';
 import { CardNames } from '../cards/CardNames';
 import { Tags } from '../card/Tags';
-import { GlobalParameter } from '../board';
-
-interface GlobalRequirement {
-  min: boolean;
-  amount: number;
-  type: GlobalParameter;
-}
+import { GlobalParameter } from '../Game';
 
 export default class CardBuilder {
   private _id!: string;
@@ -72,4 +66,10 @@ export default class CardBuilder {
   get victoryPoints() {
     return this._victoryPoints;
   }
+}
+
+export interface GlobalRequirement {
+  min: boolean;
+  amount: number;
+  type: GlobalParameter;
 }

@@ -5,7 +5,7 @@
 import CardBuilder from '../../cardBuilder';
 import { CardNames } from '../CardNames';
 import { Tags } from 'src/game/card/Tags';
-import { GlobalParameter } from 'src/game/board';
+import { GlobalParameter } from '../../Game';
 
 // 001 Colonizer Training Camp
 export const colonizerTrainingCamp = new CardBuilder(
