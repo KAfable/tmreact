@@ -2,9 +2,15 @@
 
 This is documentation for the CardBuilder API. Cardbuilder creates a `card object given the following scripts.
 
-## Activation Methods
+## Play Methods
 
-These methods alter the card's activation method, which is a one time event upon activating the card.
+These methods alter the result of card's play method, which is a one time occurence upon playing the card.
+
+## setID
+
+`setID` takes a string and sets that as the card ID. Since we follow the game creator's ID system, we do not generate our own. Although this does allow a card's ID to be mutatable after creation, it does not yet pose a material concern.
+
+Note that we do not use TypeScript's setters because we still want CardBuilder methods to be chainable, and setters do not return anything, thus making it uncallabe.
 
 ## `isCorp` / `isProject` / `isPrelude`
 
@@ -20,12 +26,13 @@ The following would grant 7 plant resources to the player upon activation. It ca
 const mineralDeposit = CardBuilder("Mineral Deposit");
 mineralDeposit.isProject({type: PROJECT.event, cost: 5 }); // Event Project cards are automatically added
 mineralDeposit.grant({ RESOURCES.steel: 5 });
+mineralDeposit.build();
 
 const supplyDrop = CardBuilder("Supply Drop")
-supplyDrop.isPrelude();
-supplyDrop.grant([{ RESOURCES.titanium : 3 }, { RESOURCES.steel : 8 }]);
-supplyDrop.grant({ RESOURCES.plant, 3 });
-
+supplyDrop.isPrelude()
+  .grant([{ RESOURCES.titanium : 3 }, { RESOURCES.steel : 8 }])
+  .grant({ RESOURCES.plant, 3 })
+  .build();
 ```
 
 ## `requireProduction / grantProduction`
@@ -34,9 +41,11 @@ The following would require 2 energy production and provide 2 steel production t
 
 ```ts
 const undergroundCity = CardBuilder("Underground City");
-undergroundCity.isProject(18);
-undergroundCity.requireProduction({PRODUCTION.energy: 2})
-undergroundCity.grantProduction({PRODUCTION.steel: 2})
+  .isProject(18);
+  .requireProduction({PRODUCTION.energy: 2})
+  .grantProduction({PRODUCTION.steel: 2})
+  .build();
+
 ```
 
 ## Generic Methods
@@ -45,9 +54,19 @@ undergroundCity.grantProduction({PRODUCTION.steel: 2})
 
 Takes in an array of `TAGS` and adds them to the card. Note that event tags do not need to be added as they are already part of the event activation method.
 
-## `addTagRequirements` / `addGlobalRequiments`
+## `addTagRequirements`
 
 These take in an array of `TAGS` or an array of `GLOBALS` that represent ingames tags on cards, as well as global parameters.
+
+## `addMinOxygen` / `addMaxOxygen` / `addMinTemp` / `addMaxTemp` / `addMinOcean` / `addMaxOcean` / `addMinvenus` / `addMaxVenus`
+
+These global requirement methods check if the card being played is still within range of the appropriate global parameter, inclusive.
+
+Instead of designing one complex function that takes in a type of global parameter, and a number, each global parameter will have its own method associated with it.
+
+This is due to the fact that all card global requirements in the game are one dimensional in nature, in that they only have one type of requirement rather than 2.
+
+There is no error checking for conflicting global requirements at present time.
 
 ## `addVictoryPoints`
 
