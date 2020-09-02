@@ -8,12 +8,12 @@ import { Tags } from 'src/game/card/Tags';
 import { GlobalParameter } from 'src/game/board';
 
 // 001 Colonizer Training Camp
-const colonizerTrainingcamp = new CardBuilder(CardNames.COLONIZER_TRAINING_CAMP)
+export const colonizerTrainingCamp = new CardBuilder(
+  CardNames.COLONIZER_TRAINING_CAMP
+)
   .setID('001')
   .isProject(8)
   .addTags([Tags.JOVIAN, Tags.BUILDING])
   .addGlobalRequirement({ min: true, amount: 5, type: GlobalParameter.OXYGEN })
   .addVictoryPoints(2)
   .build();
-
-module.exports = { colonizerTrainingcamp };
