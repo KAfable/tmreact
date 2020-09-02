@@ -3,8 +3,20 @@ import { BasicResource } from '../Resource';
 var Board = (function () {
     function Board(grid) {
         this.grid = [];
+        this.oxygen = 0;
+        this.temperature = -30;
+        this.oceanCount = 0;
         this.grid = grid;
     }
+    Board.prototype.getTemperature = function () {
+        return this.temperature;
+    };
+    Board.prototype.getOxygen = function () {
+        return this.oxygen;
+    };
+    Board.prototype.getOceanCount = function () {
+        return this.oceanCount;
+    };
     Board.prototype.getNeighbors = function (target) {
         return this.grid;
     };
@@ -22,4 +34,11 @@ var Board = (function () {
     return Board;
 }());
 export default Board;
+export var GlobalParameter;
+(function (GlobalParameter) {
+    GlobalParameter["OXYGEN"] = "oxygen";
+    GlobalParameter["TEMP"] = "temperature";
+    GlobalParameter["OCEAN_COUNT"] = "ocean count";
+    GlobalParameter["VENUS"] = "venus";
+})(GlobalParameter || (GlobalParameter = {}));
 //# sourceMappingURL=index.js.map

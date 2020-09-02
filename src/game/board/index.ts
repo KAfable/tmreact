@@ -54,3 +54,10 @@ export default class Board {
 
   public placeGreenery(player: Player): void {}
 }
+
+export enum GlobalParameter {
+  OXYGEN = 'oxygen',
+  TEMP = 'temperature',
+  OCEAN_COUNT = 'ocean count',
+  VENUS = 'venus',
+}
