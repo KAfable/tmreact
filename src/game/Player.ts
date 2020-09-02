@@ -1,7 +1,9 @@
 import { BasicResource } from './Resource';
 import Card from './card';
+import { Tags } from './card/Tags';
 
 export default class Player {
+  public tags: TagCount = startingTags;
   public name: string = '';
   private megacredits: number = 0;
   private megacreditProduction: number = 0;
@@ -93,3 +95,35 @@ export default class Player {
     return true;
   }
 }
+
+interface TagCount {
+  [Tags.BUILDING]: number;
+  [Tags.SPACE]: number;
+  [Tags.ENERGY]: number;
+  [Tags.SCIENCE]: number;
+  [Tags.JOVIAN]: number;
+  [Tags.EARTH]: number;
+  [Tags.PLANT]: number;
+  [Tags.MICROBE]: number;
+  [Tags.ANIMAL]: number;
+  [Tags.CITY]: number;
+  [Tags.EVENT]: number;
+  [Tags.WILD]: number;
+  [Tags.VENUS]: number;
+}
+
+const startingTags = {
+  [Tags.BUILDING]: 0,
+  [Tags.SPACE]: 0,
+  [Tags.ENERGY]: 0,
+  [Tags.SCIENCE]: 0,
+  [Tags.JOVIAN]: 0,
+  [Tags.EARTH]: 0,
+  [Tags.PLANT]: 0,
+  [Tags.MICROBE]: 0,
+  [Tags.ANIMAL]: 0,
+  [Tags.CITY]: 0,
+  [Tags.EVENT]: 0,
+  [Tags.WILD]: 0,
+  [Tags.VENUS]: 0,
+};

@@ -1,5 +1,8 @@
+var _a;
+import { Tags } from './card/Tags';
 var Player = (function () {
     function Player(name, corp) {
+        this.tags = startingTags;
         this.name = '';
         this.megacredits = 0;
         this.megacreditProduction = 0;
@@ -79,4 +82,19 @@ var Player = (function () {
     return Player;
 }());
 export default Player;
+var startingTags = (_a = {},
+    _a[Tags.BUILDING] = 0,
+    _a[Tags.SPACE] = 0,
+    _a[Tags.ENERGY] = 0,
+    _a[Tags.SCIENCE] = 0,
+    _a[Tags.JOVIAN] = 0,
+    _a[Tags.EARTH] = 0,
+    _a[Tags.PLANT] = 0,
+    _a[Tags.MICROBE] = 0,
+    _a[Tags.ANIMAL] = 0,
+    _a[Tags.CITY] = 0,
+    _a[Tags.EVENT] = 0,
+    _a[Tags.WILD] = 0,
+    _a[Tags.VENUS] = 0,
+    _a);
 //# sourceMappingURL=Player.js.map
