@@ -20,11 +20,10 @@ export default class Player {
   private energyProduction: number = 0;
   private heat: number = 0;
   private heatProduction: number = 0;
-  // private hand: Array<Card> = [];
-  public corporation: Card | undefined = undefined;
+  private hand: Array<Card> = [];
+  public corporation?: Card;
 
-  constructor(name: string, corp: Card) {
-    this.corporation = corp;
+  constructor(name: string) {
     this.name = name;
   }
 
