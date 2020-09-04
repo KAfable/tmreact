@@ -7,7 +7,7 @@ import Player from '../Player';
 export default class Card {
   public name: string = '';
   public resources: Array<BasicResource> = [];
-  public cost: number = 0;
+  public cost?: number;
   public tags: Array<Tags> = [];
   public globalReq?: GlobalRequirement;
   public victoryPoints?: number;
@@ -28,7 +28,22 @@ export default class Card {
       if (!req.min && param > req.amount) return false;
     }
 
-    // check player resources
+    if (this.cost) {
+      let total = 0;
+      const cost = this.cost;
+      const steel = player.getResource(BasicResource.STEEL);
+      const titanium = player.getResource(BasicResource.TITANIUM);
+
+      if (Tags.BUILDING in this.tags) total += steel * 2;
+      if (Tags.SPACE in this.tags) total += titanium * 2;
+      total += player.getResource(BasicResource.MEGACREDITS);
+
+      if (total < cost) return false;
+    }
+
+    // TODO check production requirements
+    // TODO check if any legal tile placements
+    // TODO check advanced resource requirements
     return true;
   }
 
@@ -40,6 +55,6 @@ export default class Card {
     // if there are any changes in global parameters, change them
     // if there are any resources earned, grant them
     // if there are any tags on the card, add to the player
-    //
+    // add to the player cards
   }
 }
