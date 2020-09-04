@@ -58,7 +58,7 @@ Takes in an array of `TAGS` and adds them to the card. Note that event tags do n
 
 These take in an array of `TAGS` or an array of `GLOBALS` that represent ingames tags on cards, as well as global parameters.
 
-## `addMinOxygen` / `addMaxOxygen` / `addMinTemp` / `addMaxTemp` / `addMinOcean` / `addMaxOcean` / `addMinvenus` / `addMaxVenus`
+## `addGlobalRequirements`
 
 These global requirement methods check if the card being played is still within range of the appropriate global parameter, inclusive.
 
@@ -72,7 +72,7 @@ There is no error checking for conflicting global requirements at present time.
 
 ```ts
 const advancedEcosystems = CardBuilder('Advanced Ecosystems');
-advancedEcosystems.addTag([TAGS.microbe, TAGS.animal, TAGS.plant]);
+advancedEcosystems.addTags([TAGS.microbe, TAGS.animal, TAGS.plant]);
 advancedEcosystems.addTagRequirements([TAGS.microbe, TAGS.animal, TAGS.plant]);
 advanceEcosystems.addVictoryPoints(3);
 ```
