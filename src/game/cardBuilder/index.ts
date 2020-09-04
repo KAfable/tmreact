@@ -6,7 +6,7 @@ import { GlobalParameter } from '../Game';
 export default class CardBuilder {
   private _id!: string;
   private _name: string;
-  private _cost!: number;
+  private _cost?: number;
   private _tags: Array<Tags> = [];
   private _globalReq?: GlobalRequirement;
   private _victoryPoints?: number;
@@ -40,6 +40,7 @@ export default class CardBuilder {
   }
 
   isProject(cost: number): CardBuilder {
+    this._cost = cost;
     return this;
   }
 
