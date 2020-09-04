@@ -23,9 +23,11 @@ This started as a personal project to port the board game Terraforming Mars into
 
 ### Release 0.3.0
 
--
+- Colonies + Venus expansions scripted
 
 ### Release 0.4.0
+
+- Multiplayer
 
 ## Directory Structure
 
