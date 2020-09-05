@@ -29,6 +29,10 @@ export default class Game {
     this.players = players;
   }
 
+  public increaseParameter(change: GlobalParamChange): void {
+    this.parameters[change.param];
+  }
+
   public increaseOceanCount() {
     if (this.parameters[GlobalParameter.OCEAN_COUNT] < MAX_OCEANS)
       this.parameters[GlobalParameter.OCEAN_COUNT]++;
@@ -53,3 +57,8 @@ export enum GlobalParameter {
   OCEAN_COUNT = 'oceanCount',
   VENUS = 'venus',
 }
+
+export type GlobalParamChange = {
+  param: GlobalParameter;
+  steps: number;
+};

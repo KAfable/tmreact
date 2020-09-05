@@ -1,4 +1,5 @@
 import Card from '../card';
+import { ResourceAmount } from '../Player';
 import { CardNames } from '../cards/CardNames';
 import { Tags } from '../card/Tags';
 import { GlobalParameter } from '../Game';
@@ -35,6 +36,8 @@ export default class CardBuilder {
     return this;
   }
 
+  addProduction(resource: ResourceAmount) {}
+
   build(): Card {
     return new Card(this);
   }
@@ -69,8 +72,8 @@ export default class CardBuilder {
   }
 }
 
-export interface GlobalRequirement {
+export type GlobalRequirement = {
   min: boolean;
   amount: number;
   type: GlobalParameter;
-}
+};

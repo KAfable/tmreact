@@ -4,22 +4,12 @@ import { Tags } from './card/Tags';
 
 export default class Player {
   public tags: TagCount = startingTags;
+  private resources = startingResources;
+  private production = startingProduction;
   public name: string = '';
-  private megacredits: number = 0;
-  private megacreditProduction: number = 0;
-  private steel: number = 0;
-  private steelProduction: number = 0;
   public steelValue: number = 2; // Advanced Alloys
-  private titanium: number = 0;
-  private titaniumProduction: number = 0;
   public titaniumValue: number = 3; // Advanced Alloys
-  private plants: number = 0;
-  private plantProduction: number = 0;
-  public greeneryPlantCost: number = 8; // Ecoline
-  private energy: number = 0;
-  private energyProduction: number = 0;
-  private heat: number = 0;
-  private heatProduction: number = 0;
+  private greeneryPlantCost: number = 8; // Ecoline
   private hand: Array<Card> = [];
   public corporation?: Card;
 
@@ -28,74 +18,59 @@ export default class Player {
   }
 
   public getResource(resource: BasicResource): number {
-    if (typeof this[resource] === 'number') return this[resource];
-    throw new Error(`Resource ${resource} is not a valid resource.`);
+    return this.resources[resource];
   }
 
-  public getProduction(): number {
-    return this.megacreditProduction;
+  public getProduction(resource: BasicResource): number {
+    return this.production[resource];
+  }
+
+  public adjustResource(input: ResourceAmount): void {
+    const { resource, amount } = input;
+    this.resources[resource] += amount;
+  }
+
+  public adjustProduction(input: ResourceAmount): void {
+    const { resource, amount } = input;
+    this.production[resource] += amount;
   }
 
   public pay(resource: BasicResource, amount: number): boolean {
-    if (this.getResource(resource) < amount) {
-      return false;
-    }
+    // pay 2 steel + 1 gold
+    // does this also bring up the UI?
+    //
 
-    this[resource] -= amount;
     return true;
   }
 
-  public receive(resource: BasicResource, amount: number): void {
-    this[resource] += amount;
-  }
-
-  public adjustMegaCreditProduction(amount: number): void {
-    // MCProduction can go negative
-    this.megacreditProduction += amount;
-  }
-
-  public adjustSteelProduction(amount: number): boolean {
-    if (this.steelProduction + amount < 0) {
-      return false;
-    }
-    this.steelProduction += amount;
+  public receive(resource: BasicResource, amount: number): boolean {
     return true;
   }
 
-  public adjustTitaniumProduction(amount: number): boolean {
-    if (this.titaniumProduction + amount < 0) {
-      return false;
-    }
-    this.titaniumProduction += amount;
-    return true;
-  }
+  public playFromHand(card: Card, payment: Array<ResourceAmount>): void {
+    // doesn't check playability or illegal states (see isPlayable)
 
-  public adjustPlantsProduction(amount: number): boolean {
-    if (this.plantProduction + amount < 0) {
-      return false;
-    }
-    this.plantProduction += amount;
-    return true;
-  }
+    // remove resources
 
-  public adjustEnergyProduction(amount: number): boolean {
-    if (this.energyProduction + amount < 0) {
-      return false;
-    }
-    this.energyProduction += amount;
-    return true;
-  }
+    // remove card from hand
 
-  public adjustHeatProduction(amount: number): boolean {
-    if (this.heatProduction + amount < 0) {
-      return false;
+    // add to played cards
+
+    // add tags to player tags
+    if (card.tags.length) {
+      for (let tag of card.tags) {
+        this.tags[tag] += 1;
+      }
     }
-    this.heatProduction += amount;
-    return true;
   }
 }
 
-interface TagCount {
+export type ResourceAmount = {
+  resource: BasicResource;
+  amount: number;
+};
+
+type TagCount = {
   [Tags.BUILDING]: number;
   [Tags.SPACE]: number;
   [Tags.ENERGY]: number;
@@ -109,7 +84,7 @@ interface TagCount {
   [Tags.EVENT]: number;
   [Tags.WILD]: number;
   [Tags.VENUS]: number;
-}
+};
 
 const startingTags = {
   [Tags.BUILDING]: 0,
@@ -125,4 +100,22 @@ const startingTags = {
   [Tags.EVENT]: 0,
   [Tags.WILD]: 0,
   [Tags.VENUS]: 0,
+};
+
+const startingResources = {
+  [BasicResource.MEGACREDITS]: 0,
+  [BasicResource.STEEL]: 0,
+  [BasicResource.TITANIUM]: 0,
+  [BasicResource.PLANTS]: 0,
+  [BasicResource.ENERGY]: 0,
+  [BasicResource.HEAT]: 0,
+};
+
+const startingProduction = {
+  [BasicResource.MEGACREDITS]: 0,
+  [BasicResource.STEEL]: 0,
+  [BasicResource.TITANIUM]: 0,
+  [BasicResource.PLANTS]: 0,
+  [BasicResource.ENERGY]: 0,
+  [BasicResource.HEAT]: 0,
 };
