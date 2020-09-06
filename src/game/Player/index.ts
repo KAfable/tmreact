@@ -1,6 +1,6 @@
-import { BasicResource } from './Resource';
-import Card from './card';
-import { Tags } from './card/Tags';
+import { BasicResource } from '../Resource';
+import Card from '../card';
+import { Tags } from '../card/Tags';
 
 export default class Player {
   public tags: TagCount = startingTags;
@@ -50,11 +50,11 @@ export default class Player {
   public playFromHand(card: Card, payment: Array<ResourceAmount>): void {
     // doesn't check playability or illegal states (see isPlayable)
 
-    // remove resources
+    // TODO remove resources
 
-    // remove card from hand
+    // TODO remove card from hand
 
-    // add to played cards
+    // TODO add to played cards
 
     // add tags to player tags
     if (card.tags.length) {
@@ -68,6 +68,11 @@ export default class Player {
 export type ResourceAmount = {
   resource: BasicResource;
   amount: number;
+};
+
+export type ProductionAmount = {
+  production: BasicResource;
+  steps: number;
 };
 
 type TagCount = {
