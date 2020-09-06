@@ -1,7 +1,7 @@
 import CardBuilder, { GlobalRequirement } from '../cardBuilder';
 import { BasicResource } from '../Resource';
 import { Tags } from './Tags';
-import Game, { GlobalParameter } from '../Game';
+import Game, { GlobalParameter } from '..';
 import Player from '../Player';
 
 export default class Card {

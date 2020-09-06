@@ -1,8 +1,8 @@
 import Card from '../card';
-import { ResourceAmount } from '../Player';
+import { ResourceAmount, ProductionAmount } from '../Player';
 import { CardNames } from '../cards/CardNames';
 import { Tags } from '../card/Tags';
-import { GlobalParameter } from '../Game';
+import { GlobalParameter, GlobalParamChange } from '..';
 
 export default class CardBuilder {
   private _id!: string;
@@ -11,6 +11,8 @@ export default class CardBuilder {
   private _tags: Array<Tags> = [];
   private _globalReq?: GlobalRequirement;
   private _victoryPoints?: number;
+  private _production: Array<ProductionAmount> = [];
+  private _globalParameters?: Array<GlobalParamChange>;
 
   constructor(name: CardNames) {
     this._name = name;
@@ -36,7 +38,13 @@ export default class CardBuilder {
     return this;
   }
 
-  addProduction(resource: ResourceAmount) {}
+  addProduction(production: ProductionAmount | Array<ProductionAmount>) {
+    if (Array.isArray(production)) {
+      this._production = [...this._production, ...production];
+    } else {
+      this._production = [...this._production, production];
+    }
+  }
 
   build(): Card {
     return new Card(this);
