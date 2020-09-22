@@ -1,4 +1,4 @@
-import Card from '../card';
+import Card, { TagRequirements } from '../card';
 import { ResourceAmount, ProductionAmount } from '../Player';
 import { CardNames } from '../cards/CardNames';
 import { Tags } from '../card/Tags';
@@ -10,9 +10,10 @@ export default class CardBuilder {
   private _cost?: number;
   private _tags: Array<Tags> = [];
   private _globalReq?: GlobalRequirement;
+  private _tagReq: TagRequirements = startingTags;
   private _victoryPoints?: number;
   private _production: Array<ProductionAmount> = [];
-  private _globalParamChanges?: Array<GlobalParamChange>;
+  private _globalParameters?: Array<GlobalParamChange>;
 
   constructor(name: CardNames) {
     this._name = name;
@@ -21,6 +22,13 @@ export default class CardBuilder {
 
   addGlobalRequirement(req: GlobalRequirement) {
     this._globalReq = req;
+    return this;
+  }
+
+  addTagRequirement(tag: Tags) {
+    if (this._tagReq[tag]) {
+      this._tagReq[tag] += 1;
+    }
     return this;
   }
 
@@ -38,14 +46,6 @@ export default class CardBuilder {
     return this;
   }
 
-  addProduction(production: ProductionAmount | Array<ProductionAmount>) {
-    if (Array.isArray(production)) {
-      this._production = [...this._production, ...production];
-    } else {
-      this._production = [...this._production, production];
-    }
-  }
-
   increaseGlobalParameter(param: GlobalParamChange) {
     if (Array.isArray(param)) {
       if (this._globalParamChanges) {
@@ -59,6 +59,34 @@ export default class CardBuilder {
   }
 
   build(): Card {
+    return new Card(this);
+  }
+  addProduction(production: ProductionAmount | Array<ProductionAmount>) {
+    if (Array.isArray(production)) {
+      this._production = [...this._production, ...production];
+    } else {
+      this._production = [...this._production, production];
+    }
+    return this;
+  }
+
+  increaseGlobalParameter(change: GlobalParamChange) {
+    // modifies the Global Paramters arrays
+    if (Array.isArray(this._globalParameters)) {
+      this._globalParameters = [...this._globalParameters, change];
+    } else {
+      this._globalParameters = [change];
+    }
+    return this;
+  }
+
+  build(): Card {
+    // modify the victory points
+    // actually are the methods modified here or in the card class itself?
+    // modify the global parameter method of the card
+    // modify the production changes method of the card
+    // modify the tag requirements
+
     return new Card(this);
   }
 
@@ -91,6 +119,22 @@ export default class CardBuilder {
     return this._victoryPoints;
   }
 }
+
+const startingTags = {
+  [Tags.BUILDING]: 0,
+  [Tags.SPACE]: 0,
+  [Tags.SCIENCE]: 0,
+  [Tags.PLANT]: 0,
+  [Tags.MICROBE]: 0,
+  [Tags.ANIMAL]: 0,
+  [Tags.ENERGY]: 0,
+  [Tags.JOVIAN]: 0,
+  [Tags.EARTH]: 0,
+  [Tags.CITY]: 0,
+  [Tags.EVENT]: 0,
+  [Tags.WILD]: 0,
+  [Tags.VENUS]: 0,
+};
 
 export type GlobalRequirement = {
   min: boolean;
