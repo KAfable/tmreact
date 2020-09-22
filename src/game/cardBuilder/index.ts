@@ -12,7 +12,7 @@ export default class CardBuilder {
   private _globalReq?: GlobalRequirement;
   private _victoryPoints?: number;
   private _production: Array<ProductionAmount> = [];
-  private _globalParameters?: Array<GlobalParamChange>;
+  private _globalParamChanges?: Array<GlobalParamChange>;
 
   constructor(name: CardNames) {
     this._name = name;
@@ -43,6 +43,18 @@ export default class CardBuilder {
       this._production = [...this._production, ...production];
     } else {
       this._production = [...this._production, production];
+    }
+  }
+
+  increaseGlobalParameter(param: GlobalParamChange) {
+    if (Array.isArray(param)) {
+      if (this._globalParamChanges) {
+        this._globalParamChanges = [...this._globalParamChanges, ...param];
+      } else {
+        this._globalParamChanges = [...param];
+      }
+    } else {
+      this._globalParamChanges = [param];
     }
   }
 
