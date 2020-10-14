@@ -24,7 +24,7 @@ The following would grant 7 plant resources to the player upon activation. It ca
 
 ```ts
 const mineralDeposit = CardBuilder("Mineral Deposit");
-mineralDeposit.isProject({type: PROJECT.event, cost: 5 }); // Event Project cards are automatically added
+mineralDeposit.isProject({type: PROJECT.event, cost: 5 });
 mineralDeposit.grant({ RESOURCES.steel: 5 });
 mineralDeposit.build();
 
