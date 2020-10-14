@@ -21,7 +21,7 @@ const deepWellHeating = new CardBuilder(CardNames.DEEP_WELL_HEATING)
   .setID('003')
   .isProject(13)
   .addTags([Tags.ENERGY, Tags.BUILDING])
-  .addProduction({ production: BasicResource.ENERGY, steps: 1 })
+  .addProduction({ production: BasicResource.ENERGY, amount: 1 })
   .increaseGlobalParameter({ param: GlobalParameter.TEMP, steps: 1 })
   .build();
 
@@ -34,18 +34,21 @@ const cloudSeeding = new CardBuilder(CardNames.CLOUD_SEEDING)
     amount: 3,
     type: GlobalParameter.OCEAN_COUNT,
   })
-  .addProduction({ type: BasicResource.PLANTS, amount: 2 })
-  .decreaseProduction([{ type: BasicResource.MEGACREDITS, amount: 1 }])
-  .decreaseAnyProduction({ type: BasicResource.HEAT, amount: 1 })
+  .addProduction({ production: BasicResource.PLANTS, amount: 2 })
+  .decreaseProduction([{ production: BasicResource.MEGACREDITS, amount: 1 }])
+  .decreaseAnyProduction({ production: BasicResource.HEAT, amount: 1 })
   .build();
 
 // 005 Seach For Life
-const seachForLife = new CardBuilder(CardNames.SEARCH_FOR_LIFE)
+const searchForLife = new CardBuilder(CardNames.SEARCH_FOR_LIFE)
   .setID('005')
   .isProject(3)
   .addTags(Tags.SCIENCE)
   .addGlobalRequirement({ min: true, type: GlobalParameter.OXYGEN, amount: 6 })
-  .addDynamicVP()
+  .addDynamicVP((game: Game) => {
+    let;
+    return 0;
+  })
   .build();
 
 // 007 Martian Rails
@@ -58,4 +61,9 @@ const martianRails = new CardBuilder(CardNames.MARTIAN_RAILS)
   })
   .build();
 
-module.exports = { deepWellHeating, colonizerTrainingCamp, cloudSeeding };
+module.exports = {
+  deepWellHeating,
+  colonizerTrainingCamp,
+  cloudSeeding,
+  searchForLife,
+};
