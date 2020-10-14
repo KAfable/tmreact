@@ -7,13 +7,13 @@ import { GlobalParameter, GlobalParamChange } from '..';
 export default class CardBuilder {
   private _id!: string;
   private _name: string;
-  private _cost?: number;
   private _tags: Array<Tags> = [];
+  private _cost?: number;
   private _globalReq?: GlobalRequirement;
   private _tagReq: TagRequirements = startingTags;
   private _victoryPoints?: number;
   private _production: Array<ProductionAmount> = [];
-  private _globalParameters?: Array<GlobalParamChange>;
+  private _globalParamChanges?: Array<GlobalParamChange>;
 
   constructor(name: CardNames) {
     this._name = name;
@@ -56,11 +56,9 @@ export default class CardBuilder {
     } else {
       this._globalParamChanges = [param];
     }
+    return this;
   }
 
-  build(): Card {
-    return new Card(this);
-  }
   addProduction(production: ProductionAmount | Array<ProductionAmount>) {
     if (Array.isArray(production)) {
       this._production = [...this._production, ...production];
@@ -70,13 +68,13 @@ export default class CardBuilder {
     return this;
   }
 
-  increaseGlobalParameter(change: GlobalParamChange) {
-    // modifies the Global Paramters arrays
-    if (Array.isArray(this._globalParameters)) {
-      this._globalParameters = [...this._globalParameters, change];
-    } else {
-      this._globalParameters = [change];
-    }
+  decreaseProduction(production: ProductionAmount | Array<ProductionAmount>) {
+    // TODO
+    return this;
+  }
+
+  decreaseAnyProduction(prod: ProductionAmount | Array<ProductionAmount>) {
+    // TODO
     return this;
   }
 
