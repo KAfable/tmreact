@@ -72,7 +72,7 @@ export type ResourceAmount = {
 
 export type ProductionAmount = {
   production: BasicResource;
-  steps: number;
+  amount: number;
 };
 
 type TagCount = {
